@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 public class Calculator {
@@ -49,6 +51,12 @@ public class Calculator {
         negative.setBounds(310, 320, buttonWidth, buttonHeight);
         delete.setBounds(230, 360, buttonWidth, buttonHeight);
 
+        addButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                System.out.println(e);
+            }
+        });
+
         buttons.add(addButton);
         buttons.add(subButton);
         buttons.add(multButton);
@@ -78,10 +86,5 @@ public class Calculator {
         frame.setSize(400, 400);
         frame.setLayout(null);
         frame.setVisible(true);
-    }
-
-    public static void add() {
-        input.setText(input.getText() + "+");
-        return;
     }
 }

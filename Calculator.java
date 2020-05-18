@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.text.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
@@ -30,7 +31,8 @@ public class Calculator {
 
     public static void main(String[] args) {
         // how to use object arrays?
-        ArrayList<Button> buttons = new ArrayList<Button>(19);
+        ArrayList<Number> numbers = new ArrayList<Number>();
+        ArrayList<Button> buttons = new ArrayList<Button>();
 
         addButton.setBounds(350, 200, buttonWidth, buttonHeight);
         subButton.setBounds(350, 240, buttonWidth, buttonHeight);
@@ -51,11 +53,20 @@ public class Calculator {
         negative.setBounds(310, 320, buttonWidth, buttonHeight);
         delete.setBounds(230, 360, buttonWidth, buttonHeight);
 
-        addButton.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                System.out.println(e);
-            }
-        });
+        // addButton.setActionCommand("+");
+        // subButton.setActionCommand("-");
+        // multButton.setActionCommand("*");
+        // divButton.setActionCommand("/");
+        // one.setActionCommand("1");
+        // two.setActionCommand("2");
+        // three.setActionCommand("3");
+        // four.setActionCommand("4");
+        // five.setActionCommand("5");
+        // six.setActionCommand("6");
+        // seven.setActionCommand("7");
+        // eight.setActionCommand("8");
+        // nine.setActionCommand("9");
+        // zero.setActionCommand("0");
 
         buttons.add(addButton);
         buttons.add(subButton);
@@ -76,9 +87,29 @@ public class Calculator {
         buttons.add(negative);
         buttons.add(delete);
 
-        for(Button but: buttons) {
+        for (Button but : buttons) {
+            if(but.getActionCommand() != "=") {
+                but.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        System.out.println(e.getActionCommand());
+                        input.setText(input.getText() + e.getActionCommand());
+                    }
+                });
+            }
+
             frame.add(but);
         }
+
+        eqButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                var i = 0;
+                while(i < input.getText().length()) {
+                    System.out.println(input.getText().length());
+
+                    i += 1;
+                }
+            }
+        });
 
         input.setBounds(10, 170, 380, 30);
 

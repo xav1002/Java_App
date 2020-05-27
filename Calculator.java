@@ -2,6 +2,8 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.text.*;
 import java.awt.event.ActionEvent;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.ArrayList;
 
 public class Calculator {
@@ -102,11 +104,16 @@ public class Calculator {
 
         eqButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                var i = 0;
-                while(i < input.getText().length()) {
-                    System.out.println(input.getText().length());
+                String symbols = "/D";
+                Pattern symbolsPattern = Pattern.compile(symbols);
 
-                    i += 1;
+                Matcher symbolsMatched = symbolsPattern.matcher(input.getText());
+
+                if(symbolsMatched.find()) {
+                    System.out.println(symbolsMatched.group(0));
+                    System.out.println("worked");
+                } else {
+                    System.out.println(input.getText());
                 }
             }
         });
